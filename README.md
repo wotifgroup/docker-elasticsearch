@@ -11,7 +11,13 @@ The [Marvel](http://www.elasticsearch.org/overview/marvel/) plugin is installed 
 Quick Start
 =============
 
-You can build the docker image yourself:
+You can pull the latest version of the image from the docker trusted build index. This is the recommended method of installation as it is easier to update image in the future.
+
+```bash
+docker pull cuervjos/elasticsearch
+```
+
+You can also build the docker image yourself:
 
 ```bash
 git clone https://github.com/cuervjos/docker-elasticsearch.git
