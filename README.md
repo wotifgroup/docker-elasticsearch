@@ -54,8 +54,10 @@ hm/5LkU3rAQB2we+fonCA46/YfQiZHhF1aSBZQt3yzbUrNSNfpV45wmf+nSTVzNB
 
 At this point you can run the image by entering the following commands:
 
+```bash
 ELASTICSEARCH=$(sudo docker run -d -p 9200:9200 cuervjos/elasticsearch)
 ELASTICSEARCH_IP=$(sudo docker inspect $ELASTICSEARCH | grep IPAddres | awk -F'"' '{print $4}')
+```
 
 Please note that you need to replace 'cuervjos' with your currently logged in user in the run command above. In addition to that please note that the run command will fail in case you have the 9200 port used already. 
 
