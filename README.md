@@ -95,7 +95,9 @@ where <ES_CONTAINER_ID> is the ID of your elasticsearch container.
 ### Mounting volumes
 Elasticsearch is a search engine you'ld like to use to index your documents and you don't want to lose the indexes you've built when the docker container is stopped/deleted. To avoid losing your indexes, you should mount volumes at.
 
-* /home/elasticsearch/esdata/data
+```bash
+/home/elasticsearch/esdata/data
+```
 
 You can use the **'-v'** option in the docker run command to mount Volumes.
 
