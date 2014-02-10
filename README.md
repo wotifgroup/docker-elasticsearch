@@ -7,7 +7,7 @@ Dockerfile to build an Elasticsearch container image.
 
 The marvel plugin is installed automatically, once started the container it will be available at:
 
-* http://<your docker ip>:9200/_plugin/marvel/
+* http://your_docker_ip>:9200/_plugin/marvel/
 
 In order to determine your docker IP address you cann use the docker inspect command:
 
