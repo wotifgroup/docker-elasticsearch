@@ -13,6 +13,8 @@ sudo -u elasticsearch -H mkdir -p /home/elasticsearch/esdata/plugins
 sudo -u elasticsearch -H mkdir -p /home/elasticsearch/esdata/config
 
 sudo -u elasticsearch -H cp /elasticsearch/setup/config/elasticsearch.yml /home/elasticsearch/esdata/config/
+sudo -u elasticsearch -H cp /elasticsearch/setup/config/logging.yml /home/elasticsearch/esdata/config/
+
 cd /home/elasticsearch/
 
 sudo -u elasticsearch -H curl -o elasticsearch-0.90.11.tar.gz https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.11.tar.gz
@@ -21,7 +23,13 @@ echo "Download completed"
 
 sudo -u elasticsearch -H tar -xvvzf elasticsearch-0.90.11.tar.gz --strip=1 -C /home/elasticsearch/elasticsearch
 
+#install the marvel plugin
+sudo -u elasticsearch -H curl -o /home/elasticsearch/esdata/plugins/marvel-latest.zip https://download.elasticsearch.org/elasticsearch/marvel/marvel-latest.zip
+sudo -u elasticsearch -H unzip -d /home/elasticsearch/esdata/plugins/marvel /home/elasticsearch/esdata/plugins/marvel-latest.zip
+sudo -u elasticsearch -H rm /home/elasticsearch/esdata/plugins/marvel-latest.zip
 
+# create the /var/run/sshd directory (required for sshd to start)
+mkdir -p /var/run/sshd
 
 # configure supervisord to start openssh server
 cat > /etc/supervisor/conf.d/openssh-server.conf <<EOF
@@ -35,3 +43,17 @@ autorestart=true
 stdout_logfile=/var/log/supervisor/%(program_name)s.log
 stderr_logfile=/var/log/supervisor/%(program_name)s.log
 EOF
+
+# configure supervisord to start cron
+cat > /etc/supervisor/conf.d/cron.conf <<EOF
+[program:cron]
+priority=20
+directory=/tmp
+command=/usr/sbin/cron -f
+user=root
+autostart=true
+autorestart=true
+stdout_logfile=/var/log/supervisor/%(program_name)s.log
+stderr_logfile=/var/log/supervisor/%(program_name)s.log
+EOF
+
