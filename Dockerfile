@@ -27,7 +27,8 @@ cat $KEYFILE
 RUN chmod 700 /root/.ssh && chmod 600 /root/.ssh/authorized_keys && chown root:root -R /root/.ssh
 
 ADD resources/ /elasticsearch
-RUN chmod 755 /elasticsearch/es /elasticsearch/setup/install && /elasticsearch/setup/install
+RUN chmod 755 /elasticsearch/es /elasticsearch/setup/install
+RUN /elasticsearch/setup/install
 
 EXPOSE 22
 EXPOSE 9200
