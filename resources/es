@@ -121,7 +121,7 @@ chown -R elasticsearch:elasticsearch /home/elasticsearch/esdata/plugins
 # Define other required variables
 PID_FILE=/var/run/$NAME.pid
 DAEMON=$ES_HOME/bin/elasticsearch
-DAEMON_OPTS="-d -p $PID_FILE -Des.default.config=$CONF_FILE -Des.default.path.home=$ES_HOME -Des.default.path.logs=$LOG_DIR -Des.default.path.data=$DATA_DIR -Des.default.path.work=$WORK_DIR -Des.default.path.conf=$CONF_DIR -Des.path.plugins=$PLUGIN_DIR"
+DAEMON_OPTS="-p $PID_FILE -Des.default.config=$CONF_FILE -Des.default.path.home=$ES_HOME -Des.default.path.logs=$LOG_DIR -Des.default.path.data=$DATA_DIR -Des.default.path.work=$WORK_DIR -Des.default.path.conf=$CONF_DIR -Des.path.plugins=$PLUGIN_DIR"
 
 
 export ES_HEAP_SIZE
@@ -184,7 +184,8 @@ touch "$PID_FILE" && chown "$ES_USER":"$ES_GROUP" "$PID_FILE"
 #log_end_msg $?
 
 # Start Daemon
-exec sudo -u $ES_USER "$DAEMON $DAEMON_OPTS"
+echo "Running command sudo -u $ES_USER $DAEMON $DAEMON_OPTS"
+exec sudo -u $ES_USER "$DAEMON" "$DAEMON_OPTS"
 ;;	
   stop)
 log_daemon_msg "Stopping $DESC"
