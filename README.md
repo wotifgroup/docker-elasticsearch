@@ -1,7 +1,7 @@
 Docker Elasticsearch
 =============
 
-Current Version: 0.9.11 
+Current Version: 1.2.1 
 
 Dockerfile to build an Elasticsearch container image.
 
