@@ -5,28 +5,28 @@ export ES_VERSION=1.2.1
 echo "Starting install"
 adduser --disabled-login --gecos 'Elasticsearch' elasticsearch
 
-sudo -u elasticsearch -H mkdir -p /home/elasticsearch/
-sudo -u elasticsearch -H mkdir -p /home/elasticsearch/elasticsearch
+sudo -u elasticsearch mkdir -p /home/elasticsearch/
+sudo -u elasticsearch mkdir -p /home/elasticsearch/elasticsearch
 
-sudo -u elasticsearch -H mkdir -p /home/elasticsearch/esdata/data
-sudo -u elasticsearch -H mkdir -p /home/elasticsearch/esdata/plugins
-sudo -u elasticsearch -H mkdir -p /home/elasticsearch/esdata/config
+sudo -u elasticsearch mkdir -p /home/elasticsearch/esdata/data
+sudo -u elasticsearch mkdir -p /home/elasticsearch/esdata/plugins
+sudo -u elasticsearch mkdir -p /home/elasticsearch/esdata/config
 
-sudo -u elasticsearch -H cp /elasticsearch/setup/config/elasticsearch.yml /home/elasticsearch/esdata/config/
-sudo -u elasticsearch -H cp /elasticsearch/setup/config/logging.yml /home/elasticsearch/esdata/config/
+sudo -u elasticsearch cp /elasticsearch/setup/config/elasticsearch.yml /home/elasticsearch/esdata/config/
+sudo -u elasticsearch cp /elasticsearch/setup/config/logging.yml /home/elasticsearch/esdata/config/
 
 cd /home/elasticsearch/
 
-sudo -u elasticsearch -H curl -o elasticsearch-$ES_VERSION.tar.gz https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-$ES_VERSION.tar.gz
+sudo -u elasticsearch curl -o elasticsearch-$ES_VERSION.tar.gz https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-$ES_VERSION.tar.gz
 echo "Download completed"
 
 
-sudo -u elasticsearch -H tar -xvvzf elasticsearch-$ES_VERSION.tar.gz --strip=1 -C /home/elasticsearch/elasticsearch
+sudo -u elasticsearch tar -xvvzf elasticsearch-$ES_VERSION.tar.gz --strip=1 -C /home/elasticsearch/elasticsearch
 
 #install the marvel plugin
-sudo -u elasticsearch -H curl -o /home/elasticsearch/esdata/plugins/marvel-latest.zip https://download.elasticsearch.org/elasticsearch/marvel/marvel-latest.zip
-sudo -u elasticsearch -H unzip -d /home/elasticsearch/esdata/plugins/marvel /home/elasticsearch/esdata/plugins/marvel-latest.zip
-sudo -u elasticsearch -H rm /home/elasticsearch/esdata/plugins/marvel-latest.zip
+sudo -u elasticsearch curl -o /home/elasticsearch/esdata/plugins/marvel-latest.zip https://download.elasticsearch.org/elasticsearch/marvel/marvel-latest.zip
+sudo -u elasticsearch unzip -d /home/elasticsearch/esdata/plugins/marvel /home/elasticsearch/esdata/plugins/marvel-latest.zip
+sudo -u elasticsearch rm /home/elasticsearch/esdata/plugins/marvel-latest.zip
 
 # create the /var/run/sshd directory (required for sshd to start)
 mkdir -p /var/run/sshd
