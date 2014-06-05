@@ -92,7 +92,7 @@ MAX_OPEN_FILES=65535
 LOG_DIR=/var/log/$NAME
 
 # Elasticsearch data directory
-DATA_DIR=/home/elasticsearch/esdata/data
+vDATA_DIR=/home/elasticsearch/esdata/data
 
 # Elasticsearch work directory
 WORK_DIR=/tmp/$NAME
@@ -184,7 +184,7 @@ touch "$PID_FILE" && chown "$ES_USER":"$ES_GROUP" "$PID_FILE"
 #log_end_msg $?
 
 # Start Daemon
-exec sudo -u $ES_USER $DAEMON -f $DAEMON_OPTS
+exec sudo -u $ES_USER "$DAEMON $DAEMON_OPTS"
 ;;	
   stop)
 log_daemon_msg "Stopping $DESC"
