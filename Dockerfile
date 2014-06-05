@@ -3,6 +3,7 @@ MAINTAINER cuervjos@gmail.com
 
 
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
+#hmm, upgrades aren't recommended
 RUN apt-get update && apt-mark hold initscripts && apt-get upgrade -y && apt-get clean # 20140206
 
 # essentials

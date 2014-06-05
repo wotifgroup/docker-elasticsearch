@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-
+export ES_VERSION=1.2.1
 echo "Starting install"
 adduser --disabled-login --gecos 'Elasticsearch' elasticsearch
 
@@ -17,11 +17,11 @@ sudo -u elasticsearch -H cp /elasticsearch/setup/config/logging.yml /home/elasti
 
 cd /home/elasticsearch/
 
-sudo -u elasticsearch -H curl -o elasticsearch-0.90.11.tar.gz https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.11.tar.gz
+sudo -u elasticsearch -H curl -o elasticsearch-$ES_VERSION.tar.gz https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-$ES_VERSION.tar.gz
 echo "Download completed"
 
 
-sudo -u elasticsearch -H tar -xvvzf elasticsearch-0.90.11.tar.gz --strip=1 -C /home/elasticsearch/elasticsearch
+sudo -u elasticsearch -H tar -xvvzf elasticsearch-$ES_VERSION.tar.gz --strip=1 -C /home/elasticsearch/elasticsearch
 
 #install the marvel plugin
 sudo -u elasticsearch -H curl -o /home/elasticsearch/esdata/plugins/marvel-latest.zip https://download.elasticsearch.org/elasticsearch/marvel/marvel-latest.zip
